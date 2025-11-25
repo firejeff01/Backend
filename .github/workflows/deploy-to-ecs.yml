@@ -46,7 +46,7 @@ jobs:
 
     - name: Restore and publish
       run: |
-        dotnet restore
+        dotnet restore Backend.sln
         dotnet publish Backend.Api/Backend.Api.csproj -c Release -o ./publish
 
     - name: Login to Amazon ECR
