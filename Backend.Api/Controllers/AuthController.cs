@@ -12,15 +12,22 @@ namespace Backend.Api.Controllers
     [Route("api/main/cuth")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "v1")]
-    public class AuthController(IAuthAppService service) : ControllerBase
+    public class AuthController : ControllerBase
     {
+        private readonly IAuthAppService _service;
+
+        public AuthController(IAuthAppService service)
+        {
+            _service = service;
+        }
+
         [HttpPost("login"), AllowAnonymous]
         [Produces("application/json")]
         [SwaggerResponse(200, "жие\", typeof(AuthResponse))]
         public async Task<IActionResult> Login([FromBody] AuthRequest req)
         {
-            var token = await service.LoginAsync(req.Email, req.Password);
-            if (token == null) return Unauthorized(new { message = "Invalid credentials" }); 
+            var token = await _service.LoginAsync(req.Email, req.Password);
+            if (token == null) return Unauthorized(new { message = "Invalid credentials" });
             return Ok(new { token });
         }
     }
