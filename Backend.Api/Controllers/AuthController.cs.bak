@@ -23,7 +23,7 @@ namespace Backend.Api.Controllers
 
         [HttpPost("login"), AllowAnonymous]
         [Produces("application/json")]
-        [SwaggerResponse(200, "Success", typeof(AuthResponse))]
+        [SwaggerResponse(200, "жие\", typeof(AuthResponse))]
         public async Task<IActionResult> Login([FromBody] AuthRequest req)
         {
             var token = await _service.LoginAsync(req.Email, req.Password);
