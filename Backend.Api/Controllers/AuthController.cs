@@ -20,7 +20,7 @@ namespace Backend.Api.Controllers
         public async Task<IActionResult> Login([FromBody] AuthRequest req)
         {
             var token = await service.LoginAsync(req.Email, req.Password);
-            if (token == null) return Unauthorized(new { message = "Invalid credentials" });
+            if (token == null) return Unauthorized(new { message = "Invalid credentials" }); 
             return Ok(new { token });
         }
     }
